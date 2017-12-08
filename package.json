@@ -1,0 +1,28 @@
+{
+  "name": "hifromtheotherside",
+  "version": "1.0.0",
+  "description": "Fighting the echo chamber one match at a time",
+  "main": "index.js",
+  "scripts": {
+    "develop": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.34",
+    "@babel/preset-react": "^7.0.0-beta.34",
+    "autoprefixer": "^7.2.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.12.1",
+    "postcss-modules": "^1.1.0",
+    "postcss-sass": "^0.2.0",
+    "prettier": "^1.9.1",
+    "stylelint": "^8.3.1"
+  }
+}
