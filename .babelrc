@@ -1,9 +1,21 @@
 {
-    "presets": [[
-        "env", {
-            "targets": {
-                "node": "current"
+  "presets": [[
+    "env", {
+      "targets": {
+        "node": "current"
+      }
+    }
+    ], "stage-2", "react"],
+    "env": {
+      "server": {
+        "plugins": [
+          [
+            "css-modules-transform", {
+                "generateScopedName": "[name]_[local]",
+                "extensions": [".css"]
             }
-        }
-    ], "stage-2", "react"]
+          ]
+        ]
+      }
+  }
 }
