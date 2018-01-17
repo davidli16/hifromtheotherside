@@ -9,12 +9,13 @@ import styles from './styles.css';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className={styles.root}>
         <header className={styles.header}>
+          <img src="images/logo.png" />
           <Link to="/signup">Signup</Link>
           <Link to="/login">Login</Link>
         </header>
-        <main>
+        <main className={styles.main}>
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
         </main>

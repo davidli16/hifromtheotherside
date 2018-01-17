@@ -24,5 +24,8 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# Tools configuration
+.vscode
+
 # Output directory
 dist/
