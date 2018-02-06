@@ -2,9 +2,12 @@ import Koa from 'koa';
 import React from 'react';
 import koaWebpack from 'koa-webpack';
 import koaReactRouter from 'koa-react-router';
+import koaBodyParser from 'koa-bodyparser';
 
 import App from './components/App';
-import webpackConfig from './webpack.config.js';
+import webpackConfig from './webpack.config';
+import db from './data/models';
+import router from './routes';
 
 const app = new Koa();
 
@@ -21,6 +24,11 @@ app.use(
     },
   }),
 );
+
+app.use(koaBodyParser());
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.use(
   koaReactRouter({

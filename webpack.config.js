@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    app: ['react-hot-loader/patch', './index.js'],
+    app: ['babel-polyfill', 'react-hot-loader/patch', './index.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
