@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Form from '../Form';
+import Field from '../Field';
+
 class Login extends React.Component {
   constructor() {
     super();
@@ -22,9 +25,7 @@ class Login extends React.Component {
     this.setState({ password: e.target.value });
   }
 
-  async _handleSubmit(e) {
-    e.preventDefault();
-
+  async _handleSubmit() {
     const response = await fetch('/login', {
       method: 'POST',
       body: JSON.stringify({
@@ -41,26 +42,24 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <form onSubmit={this._handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
+      <Form onSubmit={this._handleSubmit}>
+        <Field label="Email" htmlFor="email">
           <input
             name="email"
             value={this.state.email}
             onChange={this._handleEmail}
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        </Field>
+        <Field label="Password" htmlFor="password">
           <input
             name="password"
             type="password"
             value={this.state.password}
             onChange={this._handlePassword}
           />
-        </div>
+        </Field>
         <button type="submit">Submit</button>
-      </form>
+      </Form>
     );
   }
 }

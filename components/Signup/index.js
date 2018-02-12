@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import Form from '../Form';
+import Field from '../Field';
+
 class Signup extends React.Component {
   constructor() {
     super();
@@ -22,9 +25,7 @@ class Signup extends React.Component {
     });
   }
 
-  async _handleSubmit(e) {
-    e.preventDefault();
-
+  async _handleSubmit() {
     const response = await fetch('/signup', {
       method: 'POST',
       body: JSON.stringify({
@@ -44,42 +45,38 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this._handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First name</label>
+      <Form onSubmit={this._handleSubmit}>
+        <Field label="First name" htmlFor="firstName">
           <input
             name="firstName"
             value={this.state.firstName}
             onChange={this._handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last name</label>
+        </Field>
+        <Field label="Last name" htmlFor="lastName">
           <input
             name="lastName"
             value={this.state.lastName}
             onChange={this._handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        </Field>
+        <Field label="Email" htmlFor="email">
           <input
             name="email"
             value={this.state.email}
             onChange={this._handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        </Field>
+        <Field label="Password" htmlFor="password">
           <input
             type="passwprd"
             name="password"
             value={this.state.password}
             onChange={this._handleChange}
           />
-        </div>
+        </Field>
         <button>Submit</button>
-      </form>
+      </Form>
     );
   }
 }
