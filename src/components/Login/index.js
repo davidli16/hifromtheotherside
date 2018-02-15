@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Form from '../../ui/Form';
-import Field from '../../ui/Field';
+import Form from 'components/ui/Form';
+import Field from 'components/ui/Field';
 
 class Login extends React.Component {
   constructor() {

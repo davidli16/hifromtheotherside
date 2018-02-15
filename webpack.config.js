@@ -2,9 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  context: path.resolve(__dirname),
   devtool: 'cheap-module-source-map',
   entry: {
-    app: ['babel-polyfill', 'react-hot-loader/patch', './index.js'],
+    app: ['babel-polyfill', 'react-hot-loader/patch', './src/index.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

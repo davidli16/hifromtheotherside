@@ -1,37 +1,17 @@
 import Koa from 'koa';
 import React from 'react';
 import koaSession from 'koa-session';
-import koaWebpack from 'koa-webpack';
 import koaReactRouter from 'koa-react-router';
 import koaBodyParser from 'koa-bodyparser';
 
-import App from './components/App';
-import webpackConfig from './webpack.config';
-import db from './data/models';
-import auth from './lib/auth';
+import App from 'components/App';
+import db from 'data/models';
+import auth from 'lib/auth';
 
-import adminRoutes from './routes/admin';
-import authRoutes from './routes/auth';
-
-import './routes';
+import adminRoutes from 'routes/admin';
+import authRoutes from 'routes/auth';
 
 const app = new Koa();
-
-app.keys = ['development'];
-
-app.use(
-  koaWebpack({
-    config: webpackConfig,
-    dev: {
-      publicPath: webpackConfig.output.publicPath,
-      serverSideRender: true,
-      stats: { colors: true },
-    },
-    hot: {
-      path: '/__webpack_hmr',
-    },
-  }),
-);
 
 app.use(koaSession({ key: 'hftos' }, app));
 app.use(koaBodyParser());
@@ -49,8 +29,6 @@ app.use(
       console.log(`Error: ${err}`);
     },
     onRender(ctx) {
-      const assetsByChunkName = ctx.state.webpackStats.toJson()
-        .assetsByChunkName;
       return {
         containerRenderer: view => (
           <html lang="en">
@@ -78,4 +56,4 @@ app.use(
   }),
 );
 
-app.listen(3000);
+export default app;

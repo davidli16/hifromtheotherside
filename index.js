@@ -1,27 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { BrowserRouter } from 'react-router-dom';
+import koaWebpack from 'koa-webpack';
 
-import App from './components/App';
+import webpackConfig from './webpack.config';
+import app from './src/server.js';
 
-import 'normalize.css';
+app.keys = ['development'];
 
-const render = Component => {
-  ReactDOM.render(
-    <AppContainer>
-      <BrowserRouter>
-        <Component />
-      </BrowserRouter>
-    </AppContainer>,
-    document.getElementById('react'),
-  );
-};
+app.use(
+  koaWebpack({
+    config: webpackConfig,
+    dev: {
+      publicPath: webpackConfig.output.publicPath,
+      serverSideRender: true,
+      stats: { colors: true },
+    },
+    hot: {
+      path: '/__webpack_hmr',
+    },
+  }),
+);
 
-render(App);
-
-if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    render(App);
-  });
-}
+app.listen(3000);

@@ -1,6 +1,7 @@
-import User from '../data/models/User';
-import passport from '../lib/auth';
 import Router from 'koa-router';
+
+import User from 'data/models/User';
+import passport from 'lib/auth';
 
 const router = new Router();
 
