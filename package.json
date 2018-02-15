@@ -4,7 +4,7 @@
   "description": "Fighting the echo chamber one match at a time",
   "main": "index.js",
   "scripts": {
-    "develop": "cross-env BABEL_ENV=server nodemon server.js"
+    "develop": "cross-env BABEL_ENV=server nodemon --inspect server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +12,13 @@
   "dependencies": {
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
+    "koa-passport": "^4.0.1",
     "koa-react-router": "^3.0.0",
     "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
     "normalize.css": "^7.0.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "react": "^16.2.0",

@@ -6,9 +6,9 @@ class Form extends React.Component {
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleSubmit(e) {
+  async _handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit();
+    await this.props.onSubmit();
   }
   render() {
     const { children } = this.props;

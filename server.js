@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import React from 'react';
+import koaSession from 'koa-session';
 import koaWebpack from 'koa-webpack';
 import koaReactRouter from 'koa-react-router';
 import koaBodyParser from 'koa-bodyparser';
@@ -7,9 +8,16 @@ import koaBodyParser from 'koa-bodyparser';
 import App from './components/App';
 import webpackConfig from './webpack.config';
 import db from './data/models';
-import router from './routes';
+import auth from './lib/auth';
+
+import adminRoutes from './routes/admin';
+import authRoutes from './routes/auth';
+
+import './routes';
 
 const app = new Koa();
+
+app.keys = ['development'];
 
 app.use(
   koaWebpack({
@@ -25,10 +33,14 @@ app.use(
   }),
 );
 
+app.use(koaSession({ key: 'hftos' }, app));
 app.use(koaBodyParser());
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(auth.initialize());
+app.use(auth.session());
+
+app.use(adminRoutes.routes());
+app.use(authRoutes.routes());
 
 app.use(
   koaReactRouter({

@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import Form from '../Form';
-import Field from '../Field';
+import Form from '../../ui/Form';
+import Field from '../../ui/Field';
 
 class Signup extends React.Component {
   constructor() {

@@ -1,16 +1,10 @@
 import User from '../data/models/User';
-import router from './router';
+import passport from '../lib/auth';
+import Router from 'koa-router';
+
+const router = new Router();
 
 class InvalidUser {}
-
-router.post('/login', async ctx => {
-  const params = ctx.request.body;
-  const user = await User.findOne({ where: { email: params.email } });
-  if (!user) {
-    throw new InvalidUser();
-  }
-  ctx.body = true;
-});
 
 router.post('/signup', async ctx => {
   const params = ctx.request.body;
@@ -21,3 +15,35 @@ router.post('/signup', async ctx => {
   });
   ctx.body = true;
 });
+
+router.post('/login', async ctx => {
+  return passport.authenticate('local', (err, user, info) => {
+    if (user) {
+      ctx.login(user);
+      ctx.body = true;
+    } else {
+      ctx.status = 400;
+    }
+  })(ctx);
+});
+
+router.post('/auth/facebook', ctx => {
+  return passport.authenticate('facebook');
+});
+
+router.get('/auth/facebook/callback', async ctx => {
+  return passport.authenticate('facebook', (err, user, info) => {
+    if (user) {
+      ctx.body = true;
+    } else {
+      ctx.status = 400;
+    }
+  })(ctx);
+});
+
+router.get('/logout', ctx => {
+  ctx.logout();
+  ctx.redirect('/');
+});
+
+export default router;
