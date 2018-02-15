@@ -32,11 +32,12 @@ class Login extends React.Component {
         email: this.state.email,
         password: this.state.password,
       }),
+      credentials: 'include',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
     });
-    if (response.status === 200) {
+    if (response.status == 'success') {
       this.props.history.push('/profile');
     }
   }

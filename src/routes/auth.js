@@ -9,21 +9,26 @@ class InvalidUser {}
 
 router.post('/signup', async ctx => {
   const params = ctx.request.body;
-  await User.create({
-    firstName: params.firstName,
-    lastName: params.lastName,
-    email: params.email,
-  });
-  ctx.body = true;
+  try {
+    await User.create({
+      firstName: params.firstName,
+      lastName: params.lastName,
+      email: params.email,
+      password: params.password,
+    });
+    ctx.body = { status: 'success' };
+  } catch (error) {
+    ctx.body = { status: 'error', data: error.name };
+  }
 });
 
 router.post('/login', async ctx => {
   return passport.authenticate('local', (err, user, info) => {
     if (user) {
       ctx.login(user);
-      ctx.body = true;
+      ctx.body = { status: 'success' };
     } else {
-      ctx.status = 400;
+      ctx.body = { status: 'error', message: 'UserNotFound' };
     }
   })(ctx);
 });
@@ -35,9 +40,9 @@ router.post('/auth/facebook', ctx => {
 router.get('/auth/facebook/callback', async ctx => {
   return passport.authenticate('facebook', (err, user, info) => {
     if (user) {
-      ctx.body = true;
+      ctx.body = { status: 'success' };
     } else {
-      ctx.status = 400;
+      ctx.body = { status: 'error', message: 'UserNotFound' };
     }
   })(ctx);
 });

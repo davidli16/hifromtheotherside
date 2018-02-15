@@ -34,11 +34,12 @@ class Signup extends React.Component {
         email: this.state.email,
         password: this.state.password,
       }),
+      credentials: 'include',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
     });
-    if (response.status === 200) {
+    if (response.status == 'success') {
       this.props.history.push('/login');
     }
   }
@@ -69,7 +70,7 @@ class Signup extends React.Component {
         </Field>
         <Field label="Password" htmlFor="password">
           <input
-            type="passwprd"
+            type="password"
             name="password"
             value={this.state.password}
             onChange={this._handleChange}

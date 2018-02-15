@@ -1,6 +1,9 @@
+import bcrypt from 'bcrypt';
 import passport from 'koa-passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
+
+import User from 'data/models/User';
 
 passport.serializeUser(async (user, done) => {
   done(null, user.id);
@@ -8,7 +11,7 @@ passport.serializeUser(async (user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  done(err, user);
+  done(null, user);
 });
 
 passport.use(
@@ -16,15 +19,15 @@ passport.use(
     {
       usernameField: 'email',
     },
-    async (username, password, done) => {
+    async (email, password, done) => {
       try {
-        const user = await User.findOne({ where: { email: username } });
-        if (!user) {
+        const user = await User.findOne({ where: { email } });
+        if (!user || !await bcrypt.compare(password, user.passwordHash)) {
           return done(null, false);
         }
         return done(null, user);
-      } catch (err) {
-        return done(err);
+      } catch (error) {
+        return done(error);
       }
     },
   ),
@@ -44,8 +47,8 @@ passport.use(
           return done(null, false);
         }
         done(null, user);
-      } catch (err) {
-        return done(err);
+      } catch (error) {
+        return done(error);
       }
     },
   ),
