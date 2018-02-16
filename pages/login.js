@@ -3,8 +3,8 @@ import React from 'react';
 import request from 'lib/request';
 
 import Layout from 'components/Layout';
-import Form from 'components/ui/Form';
-import Field from 'components/ui/Field';
+import Form from 'components/Form';
+import Field from 'components/Field';
 
 export default class extends React.Component {
   constructor() {

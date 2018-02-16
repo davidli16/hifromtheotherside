@@ -1,13 +1,16 @@
 import React from 'react';
+import Link from 'next/link';
 import css from 'styled-jsx/css';
-
-import Header from 'components/Header';
 
 const styles = css`
   .root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+
+  nav {
+    background: #333;
   }
 
   main {
@@ -23,7 +26,17 @@ export default class extends React.Component {
     const { children } = this.props;
     return (
       <div className="root">
-        <Header />
+        <nav>
+          <Link href="/admin/users">
+            <a>Users</a>
+          </Link>
+          <Link href="/admin/events">
+            <a>Events</a>
+          </Link>
+          <Link href="/admin/questions">
+            <a>Questions</a>
+          </Link>
+        </nav>
         <main>{children}</main>
         <footer />
         <style jsx>{styles}</style>
