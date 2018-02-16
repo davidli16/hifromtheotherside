@@ -2,7 +2,7 @@ import React from 'react';
 
 import request from 'lib/request';
 
-import Header from 'components/Header';
+import Layout from 'components/Layout';
 import Form from 'components/ui/Form';
 import Field from 'components/ui/Field';
 
@@ -39,8 +39,7 @@ export default class extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <Header />
+      <Layout>
         <Form onSubmit={this._handleSubmit}>
           <Field label="Email" htmlFor="email">
             <input
@@ -59,7 +58,7 @@ export default class extends React.Component {
           </Field>
           <button type="submit">Submit</button>
         </Form>
-      </React.Fragment>
+      </Layout>
     );
   }
 }

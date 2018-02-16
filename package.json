@@ -14,11 +14,9 @@
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-passport": "^4.0.1",
-    "koa-react-router": "^3.0.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.1",
     "next": "^5.0.0",
-    "normalize.css": "^7.0.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^6.4.2",
@@ -32,11 +30,5 @@
     "babel-plugin-module-resolver": "^3.1.0",
     "prettier": "^1.9.1",
     "stylelint": "^8.3.1"
-  },
-  "nodemonConfig": {
-    "ignore": "components/*",
-    "execMap": {
-      "js": "babel-node"
-    }
   }
 }

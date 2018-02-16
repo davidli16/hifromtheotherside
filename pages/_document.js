@@ -1,5 +1,24 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+import css from 'styled-jsx/css';
+
+const styles = css`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+`;
 
 export default class extends Document {
   render() {
@@ -14,37 +33,11 @@ export default class extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <body>
-          <style global jsx>{`
-            * {
-              box-sizing: border-box;
-            }
-
-            html,
-            body {
-              font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial,
-                sans-serif;
-            }
-
-            a {
-              color: white;
-              text-decoration: none;
-            }
-
-            .root {
-              display: flex;
-              flex-direction: column;
-              min-height: 100vh;
-            }
-
-            .main {
-              display: flex;
-              flex-grow: 1;
-              align-items: center;
-              justify-content: center;
-            }
-          `}</style>
           <Main />
           <NextScript />
+          <style global jsx>
+            {styles}
+          </style>
         </body>
       </html>
     );
