@@ -1,61 +1,51 @@
 import Koa from 'koa';
-import React from 'react';
-import koaSession from 'koa-session';
-import koaReactRouter from 'koa-react-router';
-import koaBodyParser from 'koa-bodyparser';
+import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
+import session from 'koa-session';
+import next from 'next';
 
-import App from 'components/App';
-import db from 'data/models';
 import auth from 'lib/auth';
+import db from 'models';
 
-import adminRoutes from 'routes/admin';
-import authRoutes from 'routes/auth';
 import mainRoutes from 'routes/main';
+import authRoutes from 'routes/auth';
+import adminRoutes from 'routes/admin';
 
-const app = new Koa();
+const dev = process.env.NODE_ENV !== 'production';
 
-app.use(koaSession({ key: 'hftos' }, app));
-app.use(koaBodyParser());
+async function startServer(port, keys) {
+  const app = next({ dev });
+  const handler = app.getRequestHandler();
 
-app.use(auth.initialize());
-app.use(auth.session());
+  await app.prepare();
 
-app.use(adminRoutes.routes());
-app.use(authRoutes.routes());
-app.use(mainRoutes.routes());
+  const server = new Koa();
+  const router = new Router();
 
-app.use(
-  koaReactRouter({
-    App,
-    onError(ctx, err) {
-      console.log(`Error: ${err}`);
-    },
-    onRender(ctx) {
-      return {
-        containerRenderer: view => (
-          <html lang="en">
-            <head>
-              <title>hello from the other side</title>
-              <meta charSet="utf-8" />
-              <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-              <title>hi from the other side</title>
-              <meta name="description" content="" />
-              <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1"
-              />
-            </head>
-            <body>
-              <div id="react" dangerouslySetInnerHTML={{ __html: view }} />
-              <script src="/static/manifest.js" />
-              <script src="/static/vendor.js" />
-              <script src="/static/app.js" />
-            </body>
-          </html>
-        ),
-      };
-    },
-  }),
-);
+  server.keys = keys;
 
-export default app;
+  server.use(session({ key: 'hftos' }, server));
+  server.use(bodyParser());
+
+  server.use(auth.initialize());
+  server.use(auth.session());
+
+  router.get('*', async ctx => {
+    await handler(ctx.req, ctx.res);
+    ctx.response = false;
+  });
+
+  server.use(adminRoutes.routes());
+  server.use(authRoutes.routes());
+  server.use(mainRoutes.routes());
+  server.use(router.routes());
+
+  server.use(async (ctx, next) => {
+    ctx.res.statusCode = 200;
+    await next();
+  });
+
+  server.listen(port);
+}
+
+startServer(3000, ['development']);

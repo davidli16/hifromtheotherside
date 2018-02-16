@@ -1,11 +1,9 @@
 import Router from 'koa-router';
 
-import User from 'data/models/User';
+import User from 'models/User';
 import passport from 'lib/auth';
 
 const router = new Router();
-
-class InvalidUser {}
 
 router.post('/signup', async ctx => {
   const params = ctx.request.body;
