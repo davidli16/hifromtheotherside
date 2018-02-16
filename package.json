@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.3",
+    "isomorphic-unfetch": "^2.0.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-passport": "^4.0.1",
@@ -27,13 +28,20 @@
     "sequelize": "^4.32.6"
   },
   "devDependencies": {
+    "babel-plugin-inline-dotenv": "^1.1.2",
     "babel-plugin-module-resolver": "^3.1.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "babel-preset-env": "^1.6.1",
     "nodemon": "^1.15.0",
     "prettier": "^1.9.1",
     "stylelint": "^8.3.1"
   },
   "nodemonConfig": {
-    "ignore": ["node_modules", ".next", "pages", "components"]
+    "ignore": [
+      "node_modules",
+      ".next",
+      "pages",
+      "components"
+    ]
   }
 }

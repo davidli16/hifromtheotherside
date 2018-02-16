@@ -12,6 +12,7 @@ require('babel-register')({
     ],
   ],
   plugins: [
+    'inline-dotenv',
     [
       'module-resolver',
       {

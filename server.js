@@ -32,7 +32,7 @@ async function startServer(port, keys) {
 
   router.get('*', async ctx => {
     await handler(ctx.req, ctx.res);
-    ctx.response = false;
+    ctx.respond = false;
   });
 
   server.use(adminRoutes.routes());
@@ -40,12 +40,7 @@ async function startServer(port, keys) {
   server.use(mainRoutes.routes());
   server.use(router.routes());
 
-  server.use(async (ctx, next) => {
-    ctx.res.statusCode = 200;
-    await next();
-  });
-
   server.listen(port);
 }
 
-startServer(3000, ['development']);
+startServer(process.env.PORT, ['development']);
