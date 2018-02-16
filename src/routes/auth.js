@@ -10,16 +10,24 @@ class InvalidUser {}
 router.post('/signup', async ctx => {
   const params = ctx.request.body;
   try {
-    await User.create({
+    const user = await User.create({
       firstName: params.firstName,
       lastName: params.lastName,
       email: params.email,
       password: params.password,
     });
+    ctx.login(user);
     ctx.body = { status: 'success' };
   } catch (error) {
-    ctx.body = { status: 'error', data: error.name };
+    ctx.body = { status: 'error', message: error.name };
   }
+});
+
+router.get('/login', async (ctx, next) => {
+  if (ctx.isAuthenticated()) {
+    ctx.redirect('/');
+  }
+  await next();
 });
 
 router.post('/login', async ctx => {

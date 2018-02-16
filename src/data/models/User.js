@@ -22,6 +22,7 @@ const User = sequelize.define('users', {
       },
     },
   },
+  isAdmin: DataTypes.BOOLEAN,
 });
 
 export default User;

@@ -10,6 +10,7 @@ import auth from 'lib/auth';
 
 import adminRoutes from 'routes/admin';
 import authRoutes from 'routes/auth';
+import mainRoutes from 'routes/main';
 
 const app = new Koa();
 
@@ -21,6 +22,7 @@ app.use(auth.session());
 
 app.use(adminRoutes.routes());
 app.use(authRoutes.routes());
+app.use(mainRoutes.routes());
 
 app.use(
   koaReactRouter({

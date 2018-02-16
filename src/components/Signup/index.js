@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import request from 'lib/request';
+
 import Form from 'components/ui/Form';
 import Field from 'components/ui/Field';
 
@@ -26,22 +28,15 @@ class Signup extends React.Component {
   }
 
   async _handleSubmit() {
-    const response = await fetch('/signup', {
-      method: 'POST',
-      body: JSON.stringify({
+    try {
+      await request.post('/signup', {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         password: this.state.password,
-      }),
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-    });
-    if (response.status == 'success') {
-      this.props.history.push('/login');
-    }
+      });
+      location.href = '/';
+    } catch (error) {}
   }
 
   render() {

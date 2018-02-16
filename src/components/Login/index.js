@@ -1,5 +1,7 @@
 import React from 'react';
 
+import request from 'lib/request';
+
 import Form from 'components/ui/Form';
 import Field from 'components/ui/Field';
 
@@ -26,20 +28,13 @@ class Login extends React.Component {
   }
 
   async _handleSubmit() {
-    const response = await fetch('/login', {
-      method: 'POST',
-      body: JSON.stringify({
+    try {
+      await request.post('/login', {
         email: this.state.email,
         password: this.state.password,
-      }),
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
-    });
-    if (response.status == 'success') {
-      this.props.history.push('/profile');
-    }
+      });
+      location.href = '/';
+    } catch (error) {}
   }
   render() {
     return (

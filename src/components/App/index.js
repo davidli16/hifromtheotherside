@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Dashboard from 'components/admin/Dashboard';
+import Profile from 'components/Profile';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
 
@@ -20,6 +21,7 @@ class App extends React.Component {
           <Route exact path="/admin" component={Dashboard} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
         </main>
         <footer />
       </div>
