@@ -1,46 +1,10 @@
 {
-  "env": {
-    "client": {
-      "presets": [
-        [
-          "env",
-          {
-            "modules": false
-          }
-        ],
-        "react"
-      ],
-      "plugins": ["react-hot-loader/babel"]
-    },
-    "server": {
-      "presets": [
-        [
-          "env",
-          {
-            "useBuiltIns": true,
-            "targets": {
-              "node": "current"
-            }
-          }
-        ],
-        "react"
-      ],
-      "plugins": [
-        [
-          "css-modules-transform",
-          {
-            "generateScopedName": "[path][name]_[local]",
-            "extensions": [".css"]
-          }
-        ]
-      ]
-    }
-  },
+  "presets": ["next/babel"],
   "plugins": [
     [
       "module-resolver",
       {
-        "root": ["./src"]
+        "root": ["./"]
       }
     ]
   ]

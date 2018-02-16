@@ -2,10 +2,11 @@ import React from 'react';
 
 import request from 'lib/request';
 
+import Header from 'components/Header';
 import Form from 'components/ui/Form';
 import Field from 'components/ui/Field';
 
-class Login extends React.Component {
+export default class extends React.Component {
   constructor() {
     super();
 
@@ -38,26 +39,27 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <Form onSubmit={this._handleSubmit}>
-        <Field label="Email" htmlFor="email">
-          <input
-            name="email"
-            value={this.state.email}
-            onChange={this._handleEmail}
-          />
-        </Field>
-        <Field label="Password" htmlFor="password">
-          <input
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this._handlePassword}
-          />
-        </Field>
-        <button type="submit">Submit</button>
-      </Form>
+      <React.Fragment>
+        <Header />
+        <Form onSubmit={this._handleSubmit}>
+          <Field label="Email" htmlFor="email">
+            <input
+              name="email"
+              value={this.state.email}
+              onChange={this._handleEmail}
+            />
+          </Field>
+          <Field label="Password" htmlFor="password">
+            <input
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this._handlePassword}
+            />
+          </Field>
+          <button type="submit">Submit</button>
+        </Form>
+      </React.Fragment>
     );
   }
 }
-
-export default Login;
