@@ -1,32 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
-import css from 'styled-jsx/css';
 
-const styles = css`
-  .root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  nav {
-    background: #333;
-  }
-
-  main {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+import 'index.css';
+import css from './AdminLayout.css';
 
 export default class extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="root">
-        <nav>
+      <div className={css.root}>
+        <nav className={css.nav}>
           <Link href="/admin/users">
             <a>Users</a>
           </Link>
@@ -36,10 +19,12 @@ export default class extends React.Component {
           <Link href="/admin/questions">
             <a>Questions</a>
           </Link>
+          <Link href="/logout">
+            <a>Logout</a>
+          </Link>
         </nav>
-        <main>{children}</main>
+        <main className={css.main}>{children}</main>
         <footer />
-        <style jsx>{styles}</style>
       </div>
     );
   }

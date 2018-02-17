@@ -1,32 +1,19 @@
 import React from 'react';
-import css from 'styled-jsx/css';
+import cls from 'classnames';
 
 import Header from 'components/Header';
 
-const styles = css`
-  .root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  main {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+import 'index.css';
+import css from './Layout.css';
 
 export default class extends React.Component {
   render() {
-    const { children } = this.props;
+    const { children, className, mainClassName } = this.props;
     return (
-      <div className="root">
+      <div className={cls(css.root, className)}>
         <Header />
-        <main>{children}</main>
+        <main className={cls(css.main, mainClassName)}>{children}</main>
         <footer />
-        <style jsx>{styles}</style>
       </div>
     );
   }

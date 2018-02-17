@@ -10,6 +10,7 @@ function User({ user }) {
       <div>
         {user.firstName} {user.lastName}
       </div>
+      <div>{user.email}</div>
     </div>
   );
 }

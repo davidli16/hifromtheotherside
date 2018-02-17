@@ -1,24 +1,5 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import css from 'styled-jsx/css';
-
-const styles = css`
-  * {
-    box-sizing: border-box;
-  }
-
-  html,
-  body {
-    font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  a {
-    color: white;
-    text-decoration: none;
-  }
-`;
 
 export default class extends Document {
   render() {
@@ -31,13 +12,11 @@ export default class extends Document {
           <title>hi from the other side</title>
           <meta name="description" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <style global jsx>
-            {styles}
-          </style>
         </body>
       </html>
     );

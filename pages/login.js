@@ -6,6 +6,8 @@ import Layout from 'components/Layout';
 import Form from 'components/Form';
 import Field from 'components/Field';
 
+import css from './login.css';
+
 export default class extends React.Component {
   constructor() {
     super();
@@ -39,7 +41,7 @@ export default class extends React.Component {
   }
   render() {
     return (
-      <Layout>
+      <Layout mainClassName={css.centeredForm}>
         <Form onSubmit={this._handleSubmit}>
           <Field label="Email" htmlFor="email">
             <input

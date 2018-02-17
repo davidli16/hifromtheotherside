@@ -1,20 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import css from 'styled-jsx/css';
 
-const styles = css`
-  header {
-    display: flex;
-    align-items: center;
-    background: #333;
-    padding: 16px;
-  }
-`;
+import css from './Header.css';
 
 export default class extends React.Component {
   render() {
     return (
-      <header>
+      <header className={css.header}>
         <img src="images/logo.png" />
         <Link href="/signup">
           <a>Signup</a>
@@ -22,7 +14,6 @@ export default class extends React.Component {
         <Link href="/login">
           <a>Login</a>
         </Link>
-        <style jsx>{styles}</style>
       </header>
     );
   }
