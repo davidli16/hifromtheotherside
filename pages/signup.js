@@ -1,10 +1,9 @@
 import React from 'react';
+import { Formik, Form, Field } from 'formik';
 
 import request from 'lib/request';
 
 import Layout from 'components/Layout';
-import Form from 'components/Form';
-import Field from 'components/Field';
 
 import css from './signup.css';
 
@@ -12,30 +11,37 @@ export default class extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    };
-
-    this._handleChange = this._handleChange.bind(this);
+    this._renderForm = this._renderForm.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  _renderForm() {
+    return (
+      <Form>
+        <label htmlFor="firstName">First name</label>
+        <Field name="firstName" />
+
+        <label htmlFor="lastName">Last name</label>
+        <Field name="lastName" />
+
+        <label htmlFor="email">Email</label>
+        <Field name="email" type="email" />
+
+        <label htmlFor="email">Password</label>
+        <Field name="password" type="password" />
+
+        <button type="submit">Submit</button>
+      </Form>
+    );
   }
 
-  async _handleSubmit() {
+  async _handleSubmit(values) {
     try {
       await request.post('/signup', {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password,
       });
       location.href = '/';
     } catch (error) {}
@@ -44,38 +50,16 @@ export default class extends React.Component {
   render() {
     return (
       <Layout mainClassName={css.centeredForm}>
-        <Form onSubmit={this._handleSubmit}>
-          <Field label="First name" htmlFor="firstName">
-            <input
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this._handleChange}
-            />
-          </Field>
-          <Field label="Last name" htmlFor="lastName">
-            <input
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this._handleChange}
-            />
-          </Field>
-          <Field label="Email" htmlFor="email">
-            <input
-              name="email"
-              value={this.state.email}
-              onChange={this._handleChange}
-            />
-          </Field>
-          <Field label="Password" htmlFor="password">
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this._handleChange}
-            />
-          </Field>
-          <button>Submit</button>
-        </Form>
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+          }}
+          render={this._renderForm}
+          onSubmit={this._handleSubmit}
+        />
       </Layout>
     );
   }
