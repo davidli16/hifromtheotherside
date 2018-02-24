@@ -17,7 +17,7 @@ function User({ user }) {
 
 export default class extends React.Component {
   static async getInitialProps() {
-    const users = await request.get('/admin/users.json');
+    const users = await request.get('/admin/users/getAll');
     return {
       users,
     };
