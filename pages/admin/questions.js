@@ -1,10 +1,12 @@
 import React from 'react';
 import Router from 'next/router';
-import { Formik, Form, Field } from 'formik';
 
 import request from 'lib/request';
 
 import AdminLayout from 'components/AdminLayout';
+import Form from 'components/Form';
+import Field from 'components/Field';
+import Button from 'components/Button';
 
 export default class extends React.Component {
   static async getInitialProps() {
@@ -17,18 +19,7 @@ export default class extends React.Component {
   constructor() {
     super();
 
-    this._renderForm = this._renderForm.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
-  _renderForm() {
-    return (
-      <Form>
-        <Field name="topic" />
-        <Field name="text" />
-        <button type="submit">Submit</button>
-      </Form>
-    );
   }
 
   async _handleSubmit(values) {
@@ -43,11 +34,14 @@ export default class extends React.Component {
     const { questions } = this.props;
     return (
       <AdminLayout>
-        <Formik
+        <Form
           initialValues={{ topic: '', text: '' }}
-          render={this._renderForm}
           onSubmit={this._handleSubmit}
-        />
+        >
+          <Field label="Topic" name="topic" />
+          <Field label="Text" name="text" />
+          <Button type="submit">Submit</Button>
+        </Form>
         {questions.map(question => (
           <div key={question.id}>
             {question.topic}: {question.text}

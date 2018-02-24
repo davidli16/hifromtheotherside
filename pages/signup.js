@@ -1,9 +1,11 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
 
 import request from 'lib/request';
 
+import Button from 'components/Button';
 import Layout from 'components/Layout';
+import Field from 'components/Field';
+import Form from 'components/Form';
 
 import css from './signup.css';
 
@@ -11,28 +13,7 @@ export default class extends React.Component {
   constructor() {
     super();
 
-    this._renderForm = this._renderForm.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
-  _renderForm() {
-    return (
-      <Form>
-        <label htmlFor="firstName">First name</label>
-        <Field name="firstName" />
-
-        <label htmlFor="lastName">Last name</label>
-        <Field name="lastName" />
-
-        <label htmlFor="email">Email</label>
-        <Field name="email" type="email" />
-
-        <label htmlFor="email">Password</label>
-        <Field name="password" type="password" />
-
-        <button type="submit">Submit</button>
-      </Form>
-    );
   }
 
   async _handleSubmit(values) {
@@ -44,22 +25,27 @@ export default class extends React.Component {
         password: values.password,
       });
       location.href = '/';
-    } catch (error) {}
+    } catch (error) { }
   }
 
   render() {
     return (
       <Layout mainClassName={css.centeredForm}>
-        <Formik
+        <Form
           initialValues={{
             firstName: '',
             lastName: '',
             email: '',
             password: '',
           }}
-          render={this._renderForm}
           onSubmit={this._handleSubmit}
-        />
+        >
+          <Field label="First name" name="firstName" />
+          <Field label="Last name" name="lastName" />
+          <Field label="Email" name="email" type="email" />
+          <Field label="Password" name="password" type="password" />
+          <Button type="submit">Submit</Button>
+        </Form>
       </Layout>
     );
   }

@@ -1,0 +1,28 @@
+.field {
+  position: relative;
+}
+
+.field + .field {
+  margin-top: 16px;
+}
+
+.label {
+  position: absolute;
+  display: inline-block;
+  background: white;
+  font-size: 0.9rem;
+  padding: 0 8px;
+  z-index: 2;
+  top: -8px;
+  left: 4px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+  border: 1px solid #333;
+  padding: 16px;
+  border-radius: 2px;
+  z-index: 1;
+}

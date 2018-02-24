@@ -20,7 +20,7 @@ export default class extends React.Component {
             <a>Questions</a>
           </Link>
           <Link href="/logout">
-            <a>Logout</a>
+            <a className={css.logoutLink}>Logout</a>
           </Link>
         </nav>
         <main className={css.main}>{children}</main>
