@@ -1,32 +1,59 @@
 'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('questions', {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('questions', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
       },
       topic: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       text: {
-        allowNull: false,
         type: Sequelize.STRING,
-      },
-      createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
       },
-      updatedAt: {
+      isDefault: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
-        type: Sequelize.DATE,
+      },
+    });
+
+    await queryInterface.createTable('answers', {
+      id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      value: {
+        type: Sequelize.SMALLINT,
+        allowNull: false,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+      },
+      questionId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'questions',
+          key: 'id',
+        },
       },
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('questions');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('questions');
+    await queryInterface.dropTable('answers');
   },
 };

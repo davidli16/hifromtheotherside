@@ -2,8 +2,6 @@ import DataTypes from 'sequelize';
 import bcrypt from 'bcrypt';
 import sequelize from './index';
 
-import Answer from './Answer';
-
 const User = sequelize.define('users', {
   firstName: DataTypes.STRING,
   lastName: DataTypes.STRING,
@@ -26,6 +24,5 @@ const User = sequelize.define('users', {
   },
   isAdmin: DataTypes.BOOLEAN,
 });
-User.hasMany(Answer);
 
 export default User;
