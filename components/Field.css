@@ -1,5 +1,6 @@
 .field {
   position: relative;
+  padding-top: 8px;
 }
 
 .field + .field {
@@ -13,7 +14,7 @@
   font-size: 0.9rem;
   padding: 0 8px;
   z-index: 2;
-  top: -8px;
+  top: 0;
   left: 4px;
 }
 

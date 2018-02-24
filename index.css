@@ -13,3 +13,18 @@ a {
   color: white;
   text-decoration: none;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+tbody td {
+  padding: 8px;
+}

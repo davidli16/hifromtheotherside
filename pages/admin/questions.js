@@ -4,6 +4,7 @@ import Router from 'next/router';
 import request from 'lib/request';
 
 import AdminLayout from 'components/AdminLayout';
+import Section from 'components/Section';
 import Form from 'components/Form';
 import Field from 'components/Field';
 import Button from 'components/Button';
@@ -42,11 +43,22 @@ export default class extends React.Component {
           <Field label="Text" name="text" />
           <Button type="submit">Submit</Button>
         </Form>
-        {questions.map(question => (
-          <div key={question.id}>
-            {question.topic}: {question.text}
-          </div>
-        ))}
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            {questions.map(question => (
+              <tr key={question.id}>
+                <td>{question.topic}</td>
+                <td>{question.text}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </AdminLayout>
     );
   }

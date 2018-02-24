@@ -1,0 +1,8 @@
+.section + .section {
+  margin-top: 32px;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: bold;
+}

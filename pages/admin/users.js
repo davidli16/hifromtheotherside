@@ -6,12 +6,12 @@ import AdminLayout from 'components/AdminLayout';
 
 function User({ user }) {
   return (
-    <div>
-      <div>
+    <tr>
+      <td>
         {user.firstName} {user.lastName}
-      </div>
-      <div>{user.email}</div>
-    </div>
+      </td>
+      <td>{user.email}</td>
+    </tr>
   );
 }
 
@@ -27,7 +27,15 @@ export default class extends React.Component {
     const { users } = this.props;
     return (
       <AdminLayout>
-        {users.map(user => <User key={user.id} user={user} />)}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>{users.map(user => <User key={user.id} user={user} />)}</tbody>
+        </table>
       </AdminLayout>
     );
   }
