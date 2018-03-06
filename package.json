@@ -4,7 +4,7 @@
   "description": "Fighting the echo chamber one match at a time",
   "main": "index.js",
   "scripts": {
-    "develop": "nodemon index.js"
+    "develop": "nodemon --inspect index.js"
   },
   "keywords": [],
   "author": "",
@@ -41,11 +41,6 @@
     "stylelint": "^8.3.1"
   },
   "nodemonConfig": {
-    "ignore": [
-      "node_modules",
-      ".next",
-      "pages",
-      "components"
-    ]
+    "ignore": ["node_modules", ".next", "pages", "components"]
   }
 }
