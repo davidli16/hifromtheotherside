@@ -1,6 +1,7 @@
 import DataTypes from 'sequelize';
 import bcrypt from 'bcrypt';
-import sequelize from './index';
+
+import sequelize from './db';
 
 const User = sequelize.define('users', {
   firstName: DataTypes.STRING,

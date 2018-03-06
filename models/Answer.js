@@ -1,7 +1,6 @@
 import DataTypes from 'sequelize';
 
-import User from './User';
-import sequelize from './index';
+import sequelize from './db';
 
 import Question from './Question';
 import User from './User';

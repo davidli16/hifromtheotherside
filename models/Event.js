@@ -1,6 +1,6 @@
 import DataTypes from 'sequelize';
 
-import sequelize from './index';
+import sequelize from './db';
 
 const Event = sequelize.define('events', {
   name: DataTypes.STRING,
