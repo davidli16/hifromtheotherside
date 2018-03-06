@@ -17,12 +17,6 @@ export default class extends React.Component {
     };
   }
 
-  constructor() {
-    super();
-
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
   async _handleSubmit(values) {
     await request.post('/admin/questions/create', {
       topic: values.topic,

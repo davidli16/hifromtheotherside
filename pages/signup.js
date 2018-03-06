@@ -10,12 +10,6 @@ import Form from 'components/Form';
 import css from './signup.css';
 
 export default class extends React.Component {
-  constructor() {
-    super();
-
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
   async _handleSubmit(values) {
     try {
       await request.post('/signup', {
@@ -25,7 +19,7 @@ export default class extends React.Component {
         password: values.password,
       });
       location.href = '/';
-    } catch (error) { }
+    } catch (error) {}
   }
 
   render() {
