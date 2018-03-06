@@ -6,8 +6,16 @@ import Question from './Question';
 import User from './User';
 
 const Answer = sequelize.define(
-  'answers',
+  'answer',
   {
+    questionId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     value: DataTypes.TINYINT,
   },
   { timestamps: false },

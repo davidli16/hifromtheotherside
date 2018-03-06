@@ -24,19 +24,10 @@ module.exports = {
     });
 
     await queryInterface.createTable('answers', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      value: {
-        type: Sequelize.SMALLINT,
-        allowNull: false,
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'users',
           key: 'id',
@@ -45,15 +36,20 @@ module.exports = {
       questionId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'questions',
           key: 'id',
         },
       },
+      value: {
+        type: Sequelize.SMALLINT,
+        allowNull: false,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('questions');
     await queryInterface.dropTable('answers');
+    await queryInterface.dropTable('questions');
   },
 };

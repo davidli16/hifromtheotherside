@@ -3,7 +3,7 @@ import DataTypes from 'sequelize';
 import sequelize from './db';
 
 const Question = sequelize.define(
-  'questions',
+  'question',
   {
     topic: DataTypes.STRING,
     text: DataTypes.STRING,

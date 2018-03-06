@@ -29,20 +29,12 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
     await queryInterface.createTable('eventQuestions', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      order: {
-        type: Sequelize.SMALLINT,
-        allowNull: false,
-      },
       eventId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'events',
           key: 'id',
@@ -51,22 +43,23 @@ module.exports = {
       questionId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'questions',
           key: 'id',
         },
       },
-    });
-    await queryInterface.createTable('eventAttendees', {
-      id: {
-        type: Sequelize.INTEGER,
+      order: {
+        type: Sequelize.SMALLINT,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
       },
+    });
+
+    await queryInterface.createTable('eventAttendees', {
       eventId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'events',
           key: 'id',
@@ -75,6 +68,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
         references: {
           model: 'users',
           key: 'id',

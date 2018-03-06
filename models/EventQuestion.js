@@ -7,8 +7,16 @@ import Question from './Question';
 import Event from './Event';
 
 const EventQuestion = sequelize.define(
-  'eventQuestions',
+  'eventQuestion',
   {
+    eventId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    questionId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     order: DataTypes.SMALLINT,
   },
   {

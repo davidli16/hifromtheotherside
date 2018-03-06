@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 import sequelize from './db';
 
-const User = sequelize.define('users', {
+const User = sequelize.define('user', {
   firstName: DataTypes.STRING,
   lastName: DataTypes.STRING,
   email: DataTypes.STRING,
